@@ -1,0 +1,3 @@
+rootProject.name = 'PSARebuild1'
+
+include ':app'
