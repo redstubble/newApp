@@ -7,7 +7,7 @@ import {
   createDrawerNavigator,
   DrawerActions,
 } from 'react-navigation';
-import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { Icons } from 'react-native-vector-icons';
 import { backgroundRed } from '../utils/colors';
 import { signOut } from '../utils/psaApi';
 import Home from '../layout/Home';
@@ -65,7 +65,7 @@ const TabNav = createBottomTabNavigator(
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
         return (
-          <MaterialCommunityIcons name={iconName} size={25} color={tintColor} />
+          <Icons name={iconName} size={25} color={tintColor} />
         );
       },
     }),
@@ -93,7 +93,8 @@ const LogoutButton = (props) => (
           alignItems: 'center',
         }}
       >
-        <Ionicons
+        <Icons
+          type="Ionicons"
           name="md-log-out"
           size={32}
           color="#000"

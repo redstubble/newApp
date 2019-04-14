@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DrawerActions } from 'react-navigation';
 import { View, ActivityIndicator, Text, ScrollView } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Icons } from 'react-native-vector-icons';
 import { connect } from 'react-redux';
 import { getMemberDataAsync } from '../utils/storageApi';
 import { textWhite, backgroundRed, backgroundWhite } from '../utils/colors';
@@ -10,7 +10,7 @@ import {
   CustomContainer,
   CustomUserMessage,
 } from '../components/CustomSnippets';
-import { updateDocumentState } from '../actions';
+import { updateDocumentState } from '../redux-actions';
 
 const hashCode = (str) =>
   str
@@ -33,7 +33,7 @@ const CollectiveAgreement = ({ navigation, agreement } = this.props) => (
       backgroundColor: textWhite,
     }}
   >
-    <MaterialCommunityIcons
+    <Icons
       name="file"
       size={32}
       color={backgroundRed}

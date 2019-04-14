@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PDFReader from 'rn-pdf-reader-js';
+// import PDFReader from 'rn-pdf-reader-js';
 import { WebView, Platform } from 'react-native';
 import { CustomContainer } from '../components/CustomSnippets';
 
@@ -13,13 +13,13 @@ export default class Document extends Component {
           source={{ uri: this.props.navigation.getParam('link') }} //'https://google.com'
           style={{ marginTop: 20 }}
         />
-      ) : (
-        <PDFReader
-          source={{
-            uri: this.props.navigation.getParam('link'),
-          }}
-        />
-      );
+      ) : (null
+          // <PDFReader
+          //   source={{
+          //     uri: this.props.navigation.getParam('link'),
+          //   }}
+          // />
+        );
     return (
       <CustomContainer
         title={this.props.navigation.getParam('name')}

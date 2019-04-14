@@ -214,8 +214,8 @@ export class LoginAPI {
     //   await FileSystem.makeDirectoryAsync(DIR, {
     //     intermediates: true,
     //   });
-  }
-  const path = `${DIR}/${fileName}`;
+    // }
+    const path = `${DIR}/${fileName}`;
     // try {
     //   await FileSystem.readDirectoryAsync(DIR);
     // } catch (e) {
@@ -223,20 +223,20 @@ export class LoginAPI {
     // }
 
     try {
-  // const url = await FileSystem.downloadAsync(link, path);
-  const = { };
-  if (url.status === 200) {
-    console.log(`${fileName} downloaded to ${path}`);
-    return {
-      path,
-      fileName,
-      mime,
-    };
-  }
-  throw new Error();
-} catch (e) {
-  console.log('Error', `Unable to download ${fileName} to ${DIR}`);
-}
+      // const url = await FileSystem.downloadAsync(link, path);
+      const url = {};
+      if (url.status === 200) {
+        console.log(`${fileName} downloaded to ${path}`);
+        return {
+          path,
+          fileName,
+          mime,
+        };
+      }
+      throw new Error();
+    } catch (e) {
+      console.log('Error', `Unable to download ${fileName} to ${DIR}`);
+    }
   };
 }
 

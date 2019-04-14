@@ -1,4 +1,4 @@
-import { UPDATE_DOCUMENTS_STATE } from '../actions';
+import { UPDATE_DOCUMENTS_STATE } from '../redux-actions';
 
 const initialDocumentUploadingState = {
   uploading: false,

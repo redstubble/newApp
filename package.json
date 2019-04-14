@@ -19,7 +19,8 @@
     "react-navigation": "^3.8.1",
     "react-redux": "^7.0.2",
     "redux": "^4.0.1",
-    "rn-fetch-blob": "0.10.13"
+    "rn-fetch-blob": "0.10.13",
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

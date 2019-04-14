@@ -19,7 +19,7 @@ import Header from '../components/header';
 import CustomTextInput from '../components/customTextInput';
 import Images from '../assets/images';
 import * as PsaApi from '../utils/psaApi';
-import { updateDocumentState } from '../actions';
+import { updateDocumentState } from '../redux-actions';
 
 const styles = StyleSheet.create({
   container: {
