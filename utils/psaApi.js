@@ -1,16 +1,13 @@
-//import { FileSystem } from 'react-native-unimodules';
+import RNFetchBlob from 'rn-fetch-blob'
 import { Platform } from 'react-native';
-import base64 from 'base-64';
 import Environment from '../utils/environment';
 import { setMemberAsync, setMemberBarcodeAsync } from '../utils/storageApi';
 import Member from './dataTypes';
 
-const FileSystem = {
-  documentDirectory: '/fd/'
-}
-
 const subDir = Platform.OS === 'ios' ? 'childFolder' : 'childFolder/';
-const DIR = `${FileSystem.documentDirectory}${subDir}`;
+const fs = RNFetchBlob.fs;
+const base64 = RNFetchBlob.base64;
+const DIR = `${fs.dirs.CacheDir}/${subDir}`;
 
 // https://davidwalsh.name/fetch-timeout - see comments
 const fetchWithTimeout = (url, options) =>
@@ -209,22 +206,26 @@ export class LoginAPI {
     const httpResponse = data.headers.get('Content-Disposition');
 
     if (httpResponse) fileName = this.getFileNameFromHttpResponse(httpResponse);
-    // const f = await FileSystem.getInfoAsync(DIR);
-    // if (f.exists === 0 || f.exists === false) {
-    //   await FileSystem.makeDirectoryAsync(DIR, {
-    //     intermediates: true,
-    //   });
-    // }
+    debugger;
+    const isDir = await fs.isDir(DIR);
+    if (!isDir) {
+      await fs.mkdir(DIR);
+    }
     const path = `${DIR}/${fileName}`;
-    // try {
-    //   await FileSystem.readDirectoryAsync(DIR);
-    // } catch (e) {
-    //   return new Error([`Unable to create local Directory ${DIR}`.psaApi]);
-    // }
+    try {
+      const isDir = await fs.isDir(DIR);
+      if (!isDir) throw 'Exception';
+    } catch (e) {
+      return new Error([`Unable to create local Directory ${DIR}`.psaApi]);
+    }
 
     try {
-      // const url = await FileSystem.downloadAsync(link, path);
-      const url = {};
+      const res = await RNFetchBlob.config({
+        path: path
+      }).fetch('GET', path);
+      debugger;
+
+
       if (url.status === 200) {
         console.log(`${fileName} downloaded to ${path}`);
         return {

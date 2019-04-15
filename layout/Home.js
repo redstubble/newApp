@@ -79,6 +79,7 @@ class Home extends React.Component {
   populateMemberData = async () => {
     const member = await getMemberDataAsync();
     const barcode = await getMemberBarcodeAsync();
+    debugger;
     if (!member.valid) console.error('Member Data Invalid Error');
     else console.log(barcode);
     this.setState({

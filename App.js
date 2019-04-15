@@ -19,7 +19,9 @@ const RootStack = createSwitchNavigator({
   'Login': {
     screen: Login
   },
-});
+}, {
+    initialRouteName: 'AuthLoading',
+  });
 
 const CheckAuth = createAppContainer(RootStack);
 

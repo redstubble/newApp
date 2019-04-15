@@ -93,13 +93,13 @@ const LogoutButton = (props) => (
           alignItems: 'center',
         }}
       >
-        <Icons
+        {/* <Icons
           type="Ionicons"
           name="md-log-out"
           size={32}
           color="#000"
           style={{ marginRight: 10 }}
-        />
+        /> */}
         <Text
           color="black"
           onPress={() => {
