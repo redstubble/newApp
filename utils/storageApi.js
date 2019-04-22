@@ -1,5 +1,5 @@
 // @flow
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const MEMBER_KEY = 'PSAMember';
 export const BARCODE_KEY = 'PSABarcodeData';
@@ -17,6 +17,7 @@ export const setMemberAsync = async (JSONData) => {
 
 export const getMemberDataAsync = async () => {
   try {
+    debugger;
     const JSONData = await AsyncStorage.getItem(MEMBER_KEY);
     if (JSONData && JSON.parse(JSONData)) {
       return JSON.parse(JSONData);

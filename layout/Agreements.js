@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DrawerActions } from 'react-navigation';
 import { View, ActivityIndicator, Text, ScrollView } from 'react-native';
-import { Icons } from 'react-native-vector-icons';
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { getMemberDataAsync } from '../utils/storageApi';
 import { textWhite, backgroundRed, backgroundWhite } from '../utils/colors';
@@ -33,12 +33,18 @@ const CollectiveAgreement = ({ navigation, agreement } = this.props) => (
       backgroundColor: textWhite,
     }}
   >
-    <Icons
+    <Icon
+      reverse
+      name='ios-american-football'
+      type='ionicon'
+      color='#517fa4'
+    />
+    {/* <Icons
       name="file"
       size={32}
       color={backgroundRed}
       style={{ marginRight: 10 }}
-    />
+    /> */}
     <Text
       style={{ color: 'black' }}
       onPress={() =>

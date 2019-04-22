@@ -204,29 +204,32 @@ export class LoginAPI {
     const data = await fetch(link, this.options);
     const mime = data.headers.get('Content-Type');
     const httpResponse = data.headers.get('Content-Disposition');
-
     if (httpResponse) fileName = this.getFileNameFromHttpResponse(httpResponse);
-    debugger;
     const isDir = await fs.isDir(DIR);
     if (!isDir) {
-      await fs.mkdir(DIR);
+      debugger;
+      const t = fs.mkdir(DIR);
+      debugger;
     }
     const path = `${DIR}/${fileName}`;
+    debugger;
     try {
       const isDir = await fs.isDir(DIR);
+      debugger;
       if (!isDir) throw 'Exception';
     } catch (e) {
+      debugger;
       return new Error([`Unable to create local Directory ${DIR}`.psaApi]);
     }
 
     try {
       const res = await RNFetchBlob.config({
         path: path
-      }).fetch('GET', path);
+      }).fetch('GET', link);
       debugger;
 
 
-      if (url.status === 200) {
+      if (res) {
         console.log(`${fileName} downloaded to ${path}`);
         return {
           path,
