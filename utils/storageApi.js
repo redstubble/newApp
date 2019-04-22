@@ -10,6 +10,8 @@ export const setMemberAsync = async (JSONData) => {
     console.info('AsyncSetMember', result);
     return result;
   } catch (e) {
+    console.log('AsyncTest');
+    debugger;
     console.log('AsyncSetMember', e.message);
     return false;
   }
@@ -17,7 +19,6 @@ export const setMemberAsync = async (JSONData) => {
 
 export const getMemberDataAsync = async () => {
   try {
-    debugger;
     const JSONData = await AsyncStorage.getItem(MEMBER_KEY);
     if (JSONData && JSON.parse(JSONData)) {
       return JSON.parse(JSONData);

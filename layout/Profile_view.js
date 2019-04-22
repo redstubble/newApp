@@ -1,5 +1,5 @@
 import React, { Component, PureComponent } from 'react';
-import { WebView } from 'react-native';
+import { WebView } from 'react-native-webview';
 import {
   CustomSpinner,
   CustomContainer,

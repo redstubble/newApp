@@ -100,6 +100,7 @@ export class LandscapeView extends PureComponent {
     } = this.props,
   ) {
     const { height, width } = Dimensions.get('window');
+    debugger;
     return (
       <React.Fragment>
         <View style={{ height, width, backgroundColor: 'blue' }} >

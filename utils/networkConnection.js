@@ -1,4 +1,5 @@
-import { NetInfo, Component } from 'react-native';
+import { Component } from 'react-native';
+import NetInfo from "@react-native-community/netinfo";
 
 export default class ConnectionInfo extends Component {
   componentDidMount() {

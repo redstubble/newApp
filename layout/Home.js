@@ -13,7 +13,7 @@ import {
   PortraitView,
   MemberDetail,
 } from '../layout/Home_view';
-import { CustomContainer } from '../components/CustomSnippets';
+import { CustomContainer, CustomSpinner } from '../components/CustomSnippets';
 
 const landscapeBackground = require('../assets/img/hor-bg.jpg');
 const landscapeBackgroundCard = require('../assets/img/credit-bg.png');
@@ -86,6 +86,7 @@ class Home extends React.Component {
       member,
       barcode,
       memberRequestCompleted: true,
+      isReady: true
     });
   };
 
@@ -134,16 +135,19 @@ class Home extends React.Component {
 
   render({ navigation } = this.props) {
     const m = this.state.member;
-    if (!this.state.isReady) {
-      return (
-        null
-        // <AppLoading
-        //   startAsync={this.loadAssetsAsync}
-        //   onFinish={() => this.setState({ isReady: true })}
-        //   onError={console.warn}
-        // />
-      );
-    }
+    debugger;
+    // if (!this.state.isReady) {
+    //   return (
+    //     <CustomContainer title="Home" navigationAction={() => navigation.dispatch(DrawerActions.openDrawer())}>
+    //       <CustomSpinner visible />
+    //     </CustomContainer>
+    //     // <AppLoading
+    //     //   startAsync={this.loadAssetsAsync}
+    //     //   onFinish={() => this.setState({ isReady: true })}
+    //     //   onError={console.warn}
+    //     // />
+    //   );
+    // }
 
     return (
       <CustomContainer

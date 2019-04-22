@@ -158,8 +158,7 @@ export class LoginAPI {
   };
 
   downloadBlob = async (link) => {
-
-    const data = await fetch('http://pngimg.com/uploads/simpsons/simpsons_PNG88.png', this.options);
+    const data = await fetch(link, this.options);
     console.log(data);
     debugger;
     const mime = data.headers.get('Content-Type');
