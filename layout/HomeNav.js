@@ -89,7 +89,6 @@ const LogoutButton = props => (
       >
         <Icon type="ionicon" name="md-log-out" size={32} color="#000" iconStyle={{ marginRight: 10 }} />
         <Text
-          color="black"
           onPress={() => {
             props.navigation.dispatch(DrawerActions.closeDrawer());
             signOut().then(() => {

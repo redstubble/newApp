@@ -20,10 +20,6 @@ export default class myTabBarComponent extends React.Component {
     });
 
   render() {
-    return this.state.portraitOrientation ? (
-      <BottomTabBar {...this.props} />
-    ) : (
-      <View />
-    );
+    return this.state.portraitOrientation ? <BottomTabBar {...this.props} /> : <View />;
   }
 }

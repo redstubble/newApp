@@ -4,13 +4,14 @@ import NetInfo from '@react-native-community/netinfo';
 import PropTypes from 'prop-types';
 import { getMemberDataAsync } from '../utils/storageApi';
 import { PROFILEPAGE } from '../utils/environment';
-import { NoInternetView, ProfileView, ProfileViewLoader } from '../layout/Profile_view';
+import { NoInternetView, ProfileView, ProfileViewLoader } from './Profile_view';
 
 class Profile extends React.Component {
   state = {
     memberRequestCompleted: false,
     isConnected: 0,
   };
+
   componentDidMount() {
     this.handleConnectionChange = isConnected => {
       this.setState({ isConnected: isConnected ? 1 : -1 });

@@ -24,7 +24,7 @@ export default class Document extends Component {
     const pdfViewer =
       Platform.OS === 'ios' ? (
         <WebView
-          source={{ uri: this.props.navigation.getParam('link') }} //'https://google.com'
+          source={{ uri: this.props.navigation.getParam('link') }} // 'https://google.com'
           style={{ marginTop: 20 }}
         />
       ) : (

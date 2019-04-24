@@ -7,7 +7,7 @@ import Head from '../components/headerSignedIn';
 import Images from '../assets/images';
 import { getMemberDataAsync, getMemberBarcodeAsync } from '../utils/storageApi';
 import Orientation from '../utils/orientation';
-import { HomeLoader, LandscapeView, PortraitView, MemberDetail } from '../layout/Home_view';
+import { HomeLoader, LandscapeView, PortraitView, MemberDetail } from './Home_view';
 import { CustomContainer, CustomSpinner } from '../components/CustomSnippets';
 
 const landscapeBackground = require('../assets/img/hor-bg.jpg');

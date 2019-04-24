@@ -1,8 +1,8 @@
 import React from 'react';
 import { createSwitchNavigator } from 'react-navigation';
-import Login from '../layout/Login';
-import AuthLoading from '../layout/AuthLoading';
-import HomeNav from '../layout/HomeNav';
+import Login from './Login';
+import AuthLoading from './AuthLoading';
+import HomeNav from './HomeNav';
 
 export const Switch = createSwitchNavigator(
   {

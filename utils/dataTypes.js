@@ -11,8 +11,11 @@ export default class ValidateMember {
   }
 
   valid = false;
+
   errMsg = [];
+
   isValid = () => this.valid;
+
   export = () => JSON.stringify(this.creds);
 
   validateMemberObj = memberObj => {

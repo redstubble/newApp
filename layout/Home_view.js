@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
 });
 
 export class MemberDetail extends Component {
-
   componentDidMount() {
     StatusBar.setHidden(true, true);
   }
@@ -76,10 +75,13 @@ export class MemberDetail extends Component {
           <UserValue style={styles.userValue}>{memberNo}</UserValue>
         </View>
 
-        <View style={{
-          maxWidth: '100%', overflow: 'hidden',
-          flexWrap: 'wrap'
-        }}>
+        <View
+          style={{
+            maxWidth: '100%',
+            overflow: 'hidden',
+            flexWrap: 'wrap',
+          }}
+        >
           <UserProp style={styles.userProp}>MEMBER NAME: </UserProp>
           <UserValue style={styles.userValue}>{memberValue}</UserValue>
         </View>
@@ -89,21 +91,12 @@ export class MemberDetail extends Component {
 }
 
 export class LandscapeView extends PureComponent {
-  render(
-    {
-      background,
-      backgroundCard,
-      barcodeValue,
-      barcodeImg,
-      logo,
-      children,
-    } = this.props,
-  ) {
+  render({ background, backgroundCard, barcodeValue, barcodeImg, logo, children } = this.props) {
     const { height, width } = Dimensions.get('window');
     debugger;
     return (
       <React.Fragment>
-        <View style={{ height, width, backgroundColor: 'blue' }} >
+        <View style={{ height, width, backgroundColor: 'blue' }}>
           <StatusBar hidden />
           <ImageBackground
             source={background}
@@ -116,8 +109,6 @@ export class LandscapeView extends PureComponent {
                 width: '80%',
               }}
             >
-
-
               <ImageBackground
                 source={backgroundCard}
                 style={{
@@ -148,11 +139,7 @@ export class LandscapeView extends PureComponent {
                       flexWrap: 'wrap',
                     }}
                   >
-                    <Image
-                      source={logo}
-                      resizeMode="contain"
-                      style={{ flex: 2, width: '40%', height: '100%' }}
-                    />
+                    <Image source={logo} resizeMode="contain" style={{ flex: 2, width: '40%', height: '100%' }} />
                     {children}
                   </View>
 

@@ -1,19 +1,16 @@
 import React, { Component, PureComponent } from 'react';
 import { WebView } from 'react-native-webview';
-import {
-  CustomSpinner,
-  CustomContainer,
-  CustomWiFiConnectionError,
-} from '../components/CustomSnippets';
+import { CustomSpinner, CustomContainer, CustomWiFiConnectionError } from '../components/CustomSnippets';
 
 export class ProfileView extends Component {
   state = {
     spinnerVisible: true,
     webViewOpacity: 0,
   };
+
   showSpinner = async () => {
     console.log('Show Spinner');
-    await new Promise((resolve) => setTimeout(resolve, 8000));
+    await new Promise(resolve => setTimeout(resolve, 8000));
     this.setState({ spinnerVisible: true, webViewOpacity: 1 });
   };
 

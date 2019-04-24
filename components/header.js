@@ -26,7 +26,7 @@ const HeaderView = styled.View`
 `;
 
 class Header extends React.Component {
-  renderView = (content) => <HeaderView>{content}</HeaderView>;
+  renderView = content => <HeaderView>{content}</HeaderView>;
 
   render({ text } = this.props) {
     const content = <HeaderText>{text}</HeaderText>;

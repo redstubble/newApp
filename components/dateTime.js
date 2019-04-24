@@ -32,9 +32,15 @@ class DateTime extends Component {
     const dateTimeStrings = this.getDateTimeStrings(toUpper);
     return (
       <Text>
-        <UserProp style={prop}>{dateTimeStrings[0]}: </UserProp>
+        <UserProp style={prop}>{dateTimeStrings[0]}
+:
+{' '}
+</UserProp>
         <UserValue style={value}>{`${this.state.DateTime.format('DD/MM/YYYY')} `}</UserValue>
-        <UserProp style={({ marginLeft: 50 }, prop)}>{dateTimeStrings[1]}: </UserProp>
+        <UserProp style={({ marginLeft: 50 }, prop)}>{dateTimeStrings[1]}
+:
+{' '}
+</UserProp>
         <UserValue style={value}>{this.state.DateTime.format('h:mm a')}</UserValue>
       </Text>
     );

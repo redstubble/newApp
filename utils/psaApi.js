@@ -1,12 +1,12 @@
 import RNFetchBlob from 'rn-fetch-blob';
 import { Platform } from 'react-native';
-import Environment from '../utils/environment';
-import { setMemberAsync, setMemberBarcodeAsync } from '../utils/storageApi';
+import Environment from './environment';
+import { setMemberAsync, setMemberBarcodeAsync } from './storageApi';
 import Member from './dataTypes';
 
 const subDir = Platform.OS === 'ios' ? 'childFolder' : 'childFolder/';
-const fs = RNFetchBlob.fs;
-const base64 = RNFetchBlob.base64;
+const { fs } = RNFetchBlob;
+const { base64 } = RNFetchBlob;
 const DIR = `${fs.dirs.CacheDir}/${subDir}`;
 
 // https://davidwalsh.name/fetch-timeout - see comments
@@ -40,6 +40,7 @@ export class LoginAPI {
     this.head.append('Access-Control-Allow-Origin', '*');
     this.head.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   }
+
   // Method
   signIn = async () => {
     let member = {};
@@ -207,7 +208,7 @@ export class LoginAPI {
 
     try {
       const res = await RNFetchBlob.config({
-        path: path,
+        path,
       }).fetch('GET', link);
       debugger;
 
