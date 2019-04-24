@@ -2,23 +2,16 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 import PropTypes from 'prop-types';
-import {
-  createBottomTabNavigator,
-  createDrawerNavigator,
-  DrawerActions,
-} from 'react-navigation';
+import { createBottomTabNavigator, createDrawerNavigator, DrawerActions } from 'react-navigation';
 import { Icons } from 'react-native-vector-icons';
 import { backgroundRed } from '../utils/colors';
 import { signOut } from '../utils/psaApi';
-import Home from '../layout/Home';
+import Home from './Home';
 import Header from '../components/header';
-import Profile from '../layout/Profile';
-import Documents from '../layout/DocumentStackNav';
+import Profile from './Profile';
+import Documents from './DocumentStackNav';
 import { CustomSafeAreaView } from '../style/Text';
-import {
-  removeMemberDataAsync,
-  removeMemberBarcodeAsync,
-} from '../utils/storageApi';
+import { removeMemberDataAsync, removeMemberBarcodeAsync } from '../utils/storageApi';
 import myTabBarComponent from '../components/myTabBarComponent';
 
 const TabNav = createBottomTabNavigator(
@@ -64,9 +57,7 @@ const TabNav = createBottomTabNavigator(
 
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
-        return (
-          <Icons name={iconName} size={25} color={tintColor} />
-        );
+        return <Icons name={iconName} size={25} color={tintColor} />;
       },
     }),
     tabBarOptions: {
@@ -77,11 +68,8 @@ const TabNav = createBottomTabNavigator(
   },
 );
 
-const LogoutButton = (props) => (
-  <CustomSafeAreaView
-    forceInset={{ top: 'always', horizontal: 'never' }}
-    style={{ flex: 1 }}
-  >
+const LogoutButton = props => (
+  <CustomSafeAreaView forceInset={{ top: 'always', horizontal: 'never' }} style={{ flex: 1 }}>
     {/* <DrawerItems {...props} /> */}
     <Header text="Pages" />
     <View style={{ flex: 1, backgroundColor: backgroundRed }}>
@@ -139,7 +127,7 @@ const DrawerNav = createDrawerNavigator(
     },
   },
   {
-    contentComponent: (props) => <LogoutButton {...props} />,
+    contentComponent: props => <LogoutButton {...props} />,
     initialRouteName: 'TabNav',
     contentOptions: {
       activeTintColor: '#e91e63',

@@ -9,27 +9,26 @@ import rootReducer from './redux-reducers';
 
 const store = createStore(rootReducer);
 
-const RootStack = createSwitchNavigator({
-  'App': {
-    screen: HomeNav,
+const RootStack = createSwitchNavigator(
+  {
+    App: {
+      screen: HomeNav,
+    },
+    AuthLoading: {
+      screen: AuthLoading,
+    },
+    Login: {
+      screen: Login,
+    },
   },
-  'AuthLoading': {
-    screen: AuthLoading,
-  },
-  'Login': {
-    screen: Login
-  },
-}, {
+  {
     initialRouteName: 'AuthLoading',
-  });
+  },
+);
 
 const CheckAuth = createAppContainer(RootStack);
 
 class App extends Component {
-  state: {
-    docsLoading: false,
-  };
-
   render() {
     return (
       <Provider store={store}>

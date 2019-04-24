@@ -5,21 +5,11 @@ import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { getMemberDataAsync } from '../utils/storageApi';
 import { textWhite, backgroundRed, backgroundWhite } from '../utils/colors';
-import {
-  CustomSpinner,
-  CustomContainer,
-  CustomUserMessage,
-} from '../components/CustomSnippets';
+import { CustomSpinner, CustomContainer, CustomUserMessage } from '../components/CustomSnippets';
 import { updateDocumentState } from '../redux-actions';
 
-const hashCode = (str) =>
-  str
-    .split('')
-    .reduce(
-      (prevHash, currVal) =>
-        ((prevHash << 5) - prevHash + currVal.charCodeAt(0)) | 0,
-      0,
-    );
+const hashCode = str =>
+  str.split('').reduce((prevHash, currVal) => ((prevHash << 5) - prevHash + currVal.charCodeAt(0)) | 0, 0);
 
 const CollectiveAgreement = ({ navigation, agreement } = this.props) => (
   <View
@@ -33,12 +23,7 @@ const CollectiveAgreement = ({ navigation, agreement } = this.props) => (
       backgroundColor: textWhite,
     }}
   >
-    <Icon
-      reverse
-      name='ios-american-football'
-      type='ionicon'
-      color='#517fa4'
-    />
+    <Icon reverse name="ios-american-football" type="ionicon" color="#517fa4" />
     {/* <Icons
       name="file"
       size={32}
@@ -90,38 +75,31 @@ class Documents extends Component {
         return <CustomUserMessage msg={msg} />;
       }
 
-      agreements = this.state.member.collective_agreements.map(
-        (agreement, k) => (
-          <CollectiveAgreement
-            navigation={navigation}
-            agreement={agreement}
-            key={hashCode(
-              agreement.fileName.slice(0, 15) + agreement.path.slice(-10),
-            )}
-          />
-        ),
-      );
+      agreements = this.state.member.collective_agreements.map((agreement, k) => (
+        <CollectiveAgreement
+          navigation={navigation}
+          agreement={agreement}
+          key={hashCode(agreement.fileName.slice(0, 15) + agreement.path.slice(-10))}
+        />
+      ));
     } else {
       agreements = <CustomSpinner />;
     }
     return (
-      <CustomContainer
-        navigationAction={() => navigation.dispatch(DrawerActions.openDrawer())}
-        title="Documents"
-      >
+      <CustomContainer navigationAction={() => navigation.dispatch(DrawerActions.openDrawer())} title="Documents">
         <ScrollView>{agreements}</ScrollView>
       </CustomContainer>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   uploading: state.uploading,
   msg: state.msg,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatchDocumentState: (bool) => dispatch(updateDocumentState(bool)),
+const mapDispatchToProps = dispatch => ({
+  dispatchDocumentState: bool => dispatch(updateDocumentState(bool)),
 });
 
 export default connect(

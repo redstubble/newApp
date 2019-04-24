@@ -1,26 +1,20 @@
 import { Component } from 'react-native';
-import NetInfo from "@react-native-community/netinfo";
+import NetInfo from '@react-native-community/netinfo';
 
 export default class ConnectionInfo extends Component {
   componentDidMount() {
-    NetInfo.isConnected.addEventListener(
-      'connectionChange',
-      this.handleConnectionChange,
-    );
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
 
-    NetInfo.isConnected.fetch().done((isConnected) => {
+    NetInfo.isConnected.fetch().done(isConnected => {
       this.setState({ status: isConnected });
     });
   }
 
   componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-      'connectionChange',
-      this.handleConnectionChange,
-    );
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectionChange);
   }
 
-  handleConnectionChange = (isConnected) => {
+  handleConnectionChange = isConnected => {
     this.setState({ status: isConnected });
     console.log(`is connected: ${this.state.status}`);
   };

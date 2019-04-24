@@ -15,7 +15,7 @@ export default class ValidateMember {
   isValid = () => this.valid;
   export = () => JSON.stringify(this.creds);
 
-  validateMemberObj = (memberObj) => {
+  validateMemberObj = memberObj => {
     Object.entries(this.schema).forEach(([k, v]) => {
       const memberValue = memberObj[k];
       if (v.required && !memberValue) {
@@ -107,7 +107,7 @@ export default class ValidateMember {
   };
 
   // pass in function, decorator, passes back something you pass back in with args
-  fluent = (fn) => (...args) => {
+  fluent = fn => (...args) => {
     fn.apply(this, args);
     return this;
   };

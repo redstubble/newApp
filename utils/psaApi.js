@@ -1,4 +1,4 @@
-import RNFetchBlob from 'rn-fetch-blob'
+import RNFetchBlob from 'rn-fetch-blob';
 import { Platform } from 'react-native';
 import Environment from '../utils/environment';
 import { setMemberAsync, setMemberBarcodeAsync } from '../utils/storageApi';
@@ -19,7 +19,7 @@ const fetchWithTimeout = (url, options) =>
     );
 
     fetch(url, options)
-      .then((response) => resolve(response), (err) => reject(err))
+      .then(response => resolve(response), err => reject(err))
       .finally(() => clearTimeout(timer));
   });
 
@@ -38,28 +38,20 @@ export class LoginAPI {
     const auth = base64.encode(`${email}:${password}`);
     this.head.append('Authorization', `Basic ${auth}`);
     this.head.append('Access-Control-Allow-Origin', '*');
-    this.head.append(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept',
-    );
+    this.head.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   }
   // Method
   signIn = async () => {
     let member = {};
     let responseBody = '';
     try {
-      const response = await fetchWithTimeout(
-        Environment.LOGIN_END_POINT,
-        this.options,
-      );
+      const response = await fetchWithTimeout(Environment.LOGIN_END_POINT, this.options);
       responseBody = await response.text();
       const JSONObj = responseBody ? JSON.parse(responseBody) || null : null;
       member = new Member(JSONObj);
       if (member.valid) {
         // agreements
-        const agreementEntries = Object.entries(
-          JSONObj.data.CollectiveAgreement,
-        );
+        const agreementEntries = Object.entries(JSONObj.data.CollectiveAgreement);
         if (agreementEntries.length > 0) {
           this.FnDocsLoading({
             uploading: true,
@@ -74,9 +66,7 @@ export class LoginAPI {
 
         if (agreementEntries.length > 0) {
           const downloadAgreements = async () => {
-            member.creds.collective_agreements = await this.downloadCollectiveAgreements(
-              agreementEntries,
-            );
+            member.creds.collective_agreements = await this.downloadCollectiveAgreements(agreementEntries);
 
             if (member.creds.collective_agreements.length > 0) {
               await setMemberAsync(member.export());
@@ -107,15 +97,12 @@ export class LoginAPI {
     return member;
   };
 
-  downloadCollectiveAgreements = async (agreementEntries) => {
+  downloadCollectiveAgreements = async agreementEntries => {
     const total = agreementEntries.length;
     // const agreements = await Promise.all(
     const funcArray = agreementEntries.map((entry, i) => {
       const value = entry.slice(1)[0]; // need second element of array
-      const {
-        Doc: agreementMetaData,
-        BelongsTo: agreementChildrenMetaData,
-      } = value;
+      const { Doc: agreementMetaData, BelongsTo: agreementChildrenMetaData } = value;
       return async () => {
         this.FnDocsLoading({
           uploading: true,
@@ -123,24 +110,22 @@ export class LoginAPI {
         });
         const agreement = await this.downloadDocs(agreementMetaData.link);
         agreement.name = agreementMetaData.name;
-        agreement.children = await agreementChildrenMetaData.map(
-          async (childMetaData) => {
-            console.log('Child Agreement', childMetaData);
-            const child = await this.downloadDocs(childMetaData.link);
-            child.name = childMetaData.name;
-          },
-        );
+        agreement.children = await agreementChildrenMetaData.map(async childMetaData => {
+          console.log('Child Agreement', childMetaData);
+          const child = await this.downloadDocs(childMetaData.link);
+          child.name = childMetaData.name;
+        });
         return agreement;
       };
     });
 
     const results = [];
-    const appendResults = async (p) => {
+    const appendResults = async p => {
       const r = await p;
       if (r) {
         results.push(r);
       }
-    }
+    };
     const finalPromise = await funcArray.reduce(async (promise, asyncFn) => {
       await appendResults(promise);
       return asyncFn();
@@ -149,7 +134,7 @@ export class LoginAPI {
     return results;
   };
 
-  getFileNameFromHttpResponse = (disposition) => {
+  getFileNameFromHttpResponse = disposition => {
     const result = disposition
       .split(';')[1]
       .trim()
@@ -157,7 +142,7 @@ export class LoginAPI {
     return result.replace(/"/g, '');
   };
 
-  downloadBlob = async (link) => {
+  downloadBlob = async link => {
     const data = await fetch(link, this.options);
     console.log(data);
     debugger;
@@ -166,9 +151,8 @@ export class LoginAPI {
     if (mime.includes('png') && link.includes('barcode')) {
       debugger;
 
-
       const b = await data.blob();
-      console.log('WELP')
+      console.log('WELP');
       debugger;
       try {
         result = await this.readBlob(b);
@@ -181,11 +165,11 @@ export class LoginAPI {
     return result;
   };
 
-  readBlob = (blob) => {
+  readBlob = blob => {
     debugger;
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = (f) => {
+      reader.onload = f => {
         debugger;
         resolve(reader.result);
       };
@@ -198,7 +182,7 @@ export class LoginAPI {
     });
   };
 
-  downloadDocs = async (link) => {
+  downloadDocs = async link => {
     let fileName = null;
     const data = await fetch(link, this.options);
     const mime = data.headers.get('Content-Type');
@@ -223,10 +207,9 @@ export class LoginAPI {
 
     try {
       const res = await RNFetchBlob.config({
-        path: path
+        path: path,
       }).fetch('GET', link);
       debugger;
-
 
       if (res) {
         console.log(`${fileName} downloaded to ${path}`);

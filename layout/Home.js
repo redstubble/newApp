@@ -7,12 +7,7 @@ import Head from '../components/headerSignedIn';
 import Images from '../assets/images';
 import { getMemberDataAsync, getMemberBarcodeAsync } from '../utils/storageApi';
 import Orientation from '../utils/orientation';
-import {
-  HomeLoader,
-  LandscapeView,
-  PortraitView,
-  MemberDetail,
-} from '../layout/Home_view';
+import { HomeLoader, LandscapeView, PortraitView, MemberDetail } from '../layout/Home_view';
 import { CustomContainer, CustomSpinner } from '../components/CustomSnippets';
 
 const landscapeBackground = require('../assets/img/hor-bg.jpg');
@@ -20,7 +15,7 @@ const landscapeBackgroundCard = require('../assets/img/credit-bg.png');
 const OCRAStd = require('../assets/fonts/OCRAStd.ttf');
 
 function cacheImages(images) {
-  return images.map((image) => {
+  return images.map(image => {
     if (typeof image === 'string') {
       return Image.prefetch(image);
     }
@@ -29,7 +24,7 @@ function cacheImages(images) {
 }
 
 function cacheFonts(fonts) {
-  return fonts.map((font));
+  return fonts.map(font);
 }
 
 class Home extends React.Component {
@@ -86,25 +81,21 @@ class Home extends React.Component {
       member,
       barcode,
       memberRequestCompleted: true,
-      isReady: true
+      isReady: true,
     });
   };
 
-  memberView = (m) => {
+  memberView = m => {
     const barcodeValue = m.barcode_no;
     const barcodeImg = this.state.barcode;
     const logo = Images.PSALogo;
     const memberNo = m.member_no;
     const memberValue = `${m.first_name.toUpperCase()} ${m.surname.toUpperCase()}`;
     if (this.state.portraitOrientation) {
-      console.log(this.state)
+      console.log(this.state);
 
       return (
-        <PortraitView
-          barcodeValue={barcodeValue}
-          barcodeImg={barcodeImg}
-          logo={logo}
-        >
+        <PortraitView barcodeValue={barcodeValue} barcodeImg={barcodeImg} logo={logo}>
           <MemberDetail
             memberNo={m.member_no}
             memberValue={`${m.first_name.toUpperCase()} ${m.surname.toUpperCase()}`}
@@ -125,12 +116,8 @@ class Home extends React.Component {
     );
   };
 
-  header = (navigation) => (
-    <Head
-      icon="menu"
-      action={() => navigation.dispatch(DrawerActions.openDrawer())}
-      title="Home"
-    />
+  header = navigation => (
+    <Head icon="menu" action={() => navigation.dispatch(DrawerActions.openDrawer())} title="Home" />
   );
 
   render({ navigation } = this.props) {
@@ -155,11 +142,7 @@ class Home extends React.Component {
         navigationAction={() => navigation.dispatch(DrawerActions.openDrawer())}
         hideHeader={!this.state.portraitOrientation}
       >
-        {this.state.memberRequestCompleted && this.state.isReady ? (
-          this.memberView(m)
-        ) : (
-            <HomeLoader />
-          )}
+        {this.state.memberRequestCompleted && this.state.isReady ? this.memberView(m) : <HomeLoader />}
       </CustomContainer>
     );
   }

@@ -20,8 +20,7 @@ class DateTime extends Component {
     clearInterval(this.intervalID);
   }
 
-  getDateTimeStrings = (upper) =>
-    ['Date', 'Time'].map((a) => (upper ? a.toUpperCase() : a));
+  getDateTimeStrings = upper => ['Date', 'Time'].map(a => (upper ? a.toUpperCase() : a));
 
   tick() {
     this.setState({
@@ -34,15 +33,9 @@ class DateTime extends Component {
     return (
       <Text>
         <UserProp style={prop}>{dateTimeStrings[0]}: </UserProp>
-        <UserValue style={value}>
-          {`${this.state.DateTime.format('DD/MM/YYYY')} `}
-        </UserValue>
-        <UserProp style={({ marginLeft: 50 }, prop)}>
-          {dateTimeStrings[1]}:{' '}
-        </UserProp>
-        <UserValue style={value}>
-          {this.state.DateTime.format('h:mm a')}
-        </UserValue>
+        <UserValue style={value}>{`${this.state.DateTime.format('DD/MM/YYYY')} `}</UserValue>
+        <UserProp style={({ marginLeft: 50 }, prop)}>{dateTimeStrings[1]}: </UserProp>
+        <UserValue style={value}>{this.state.DateTime.format('h:mm a')}</UserValue>
       </Text>
     );
   }

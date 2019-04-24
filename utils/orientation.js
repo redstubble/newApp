@@ -32,9 +32,7 @@ const isLandscape = () => {
  */
 const isTablet = () => {
   const dim = Dimensions.get('screen');
-  return (
-    (dim.scale < 2 && msp(dim, 1000)) || (dim.scale >= 2 && msp(dim, 1900))
-  );
+  return (dim.scale < 2 && msp(dim, 1000)) || (dim.scale >= 2 && msp(dim, 1900));
 };
 
 /**

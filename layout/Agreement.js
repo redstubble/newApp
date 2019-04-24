@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Pdf from 'react-native-pdf';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { CustomContainer } from '../components/CustomSnippets';
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   pdf: {
     flex: 1,
     width: Dimensions.get('window').width,
-  }
+  },
 });
 
 export default class Document extends Component {
@@ -28,19 +28,20 @@ export default class Document extends Component {
           style={{ marginTop: 20 }}
         />
       ) : (
-          <Pdf
-            source={this.props.navigation.getParam('link')}
-            onLoadComplete={(numberOfPages, filePath) => {
-              console.log(`number of pages: ${numberOfPages}`);
-            }}
-            onPageChanged={(page, numberOfPages) => {
-              console.log(`current page: ${page}`);
-            }}
-            onError={(error) => {
-              console.log(error);
-            }}
-            style={styles.pdf} />
-        );
+        <Pdf
+          source={this.props.navigation.getParam('link')}
+          onLoadComplete={(numberOfPages, filePath) => {
+            console.log(`number of pages: ${numberOfPages}`);
+          }}
+          onPageChanged={(page, numberOfPages) => {
+            console.log(`current page: ${page}`);
+          }}
+          onError={error => {
+            console.log(error);
+          }}
+          style={styles.pdf}
+        />
+      );
     return (
       <CustomContainer
         title={this.props.navigation.getParam('name')}

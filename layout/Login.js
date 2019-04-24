@@ -59,11 +59,7 @@ class Login extends Component {
   userLogin = async () => {
     const { navigation, dispatchDocumentState } = this.props;
     this.setState({ isLoggingIn: true, msg: '' });
-    const psaApi = new PsaApi.LoginAPI(
-      this.state.email,
-      this.state.password,
-      (obj) => dispatchDocumentState(obj),
-    );
+    const psaApi = new PsaApi.LoginAPI(this.state.email, this.state.password, obj => dispatchDocumentState(obj));
     const member = await psaApi.signIn(); // timeout 10 seconds
     this.setState({ isLoggingIn: false });
     if (member.valid) {
@@ -146,33 +142,24 @@ class Login extends Component {
                 />
                 <View style={{ flexBasis: 1, paddingTop: 10, minHeight: 40 }}>
                   {this.state.isLoggingIn ? (
-                    <ActivityIndicator
-                      size="large"
-                      hidesWhenStopped
-                      color="#fff"
-                      animating={this.state.isLoggingIn}
-                    />
+                    <ActivityIndicator size="large" hidesWhenStopped color="#fff" animating={this.state.isLoggingIn} />
                   ) : (
-                      <Text
-                        style={{
-                          fontSize: 18,
-                          color: textWhite,
-                          textAlign: 'center',
-                          marginTop: 'auto',
-                        }}
-                      >
-                        {this.state.msg}
-                      </Text>
-                    )}
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        color: textWhite,
+                        textAlign: 'center',
+                        marginTop: 'auto',
+                      }}
+                    >
+                      {this.state.msg}
+                    </Text>
+                  )}
                 </View>
               </View>
               <View style={{ flex: 2, paddingTop: 10, width: '100%' }}>
                 <Button
-                  disabled={
-                    this.state.isLoggingIn ||
-                    !this.state.email ||
-                    !this.state.password
-                  }
+                  disabled={this.state.isLoggingIn || !this.state.email || !this.state.password}
                   onPress={this.userLogin}
                   title="Login"
                   color="white"
@@ -196,20 +183,11 @@ class Login extends Component {
             >
               <Text
                 style={styles.textLink}
-                onPress={() =>
-                  Linking.openURL(
-                    'https://www.psa.org.nz/psasecurity/lostpassword',
-                  )
-                }
+                onPress={() => Linking.openURL('https://www.psa.org.nz/psasecurity/lostpassword')}
               >
                 Forgot Login?
               </Text>
-              <Text
-                style={styles.textLink}
-                onPress={() =>
-                  Linking.openURL('https://www.psa.org.nz/register')
-                }
-              >
+              <Text style={styles.textLink} onPress={() => Linking.openURL('https://www.psa.org.nz/register')}>
                 Not Registered?
               </Text>
             </View>
@@ -226,7 +204,7 @@ Login.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   debugger;
   return {
     documentsLoading: state.uploading,
@@ -234,8 +212,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatchDocumentState: (state) => dispatch(updateDocumentState(state)),
+const mapDispatchToProps = dispatch => ({
+  dispatchDocumentState: state => dispatch(updateDocumentState(state)),
 });
 
 export default connect(

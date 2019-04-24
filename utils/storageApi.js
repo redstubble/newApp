@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 export const MEMBER_KEY = 'PSAMember';
 export const BARCODE_KEY = 'PSABarcodeData';
 
-export const setMemberAsync = async (JSONData) => {
+export const setMemberAsync = async JSONData => {
   try {
     const result = await AsyncStorage.setItem(MEMBER_KEY, JSONData);
     console.info('AsyncSetMember', result);
@@ -29,7 +29,7 @@ export const getMemberDataAsync = async () => {
   return false;
 };
 
-export const setMemberBarcodeAsync = async (BarcodeBase64) => {
+export const setMemberBarcodeAsync = async BarcodeBase64 => {
   let result = false;
   try {
     console.log(BARCODE_KEY);
