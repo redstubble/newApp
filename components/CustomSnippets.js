@@ -41,7 +41,13 @@ export const CustomWiFiConnectionError = () => (
     }}
   >
     <View>
-      <Icon name="ios-wifi" size={60} type="ionicon" color="#fff" style={{ marginRight: 'auto', marginLeft: 'auto' }} />
+      <Icon
+        name="ios-wifi"
+        size={60}
+        type="ionicon"
+        color="#fff"
+        iconStyle={{ marginRight: 'auto', marginLeft: 'auto' }}
+      />
       <Text style={{ color: 'white', fontSize: 20 }}>Please check your network connection.</Text>
     </View>
   </View>

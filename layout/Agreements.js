@@ -4,7 +4,7 @@ import { View, Text, ScrollView } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { getMemberDataAsync } from '../utils/storageApi';
-import { textWhite } from '../utils/colors';
+import { textWhite, backgroundRed } from '../utils/colors';
 import { CustomSpinner, CustomContainer, CustomUserMessage } from '../components/CustomSnippets';
 import { updateDocumentState } from '../redux-actions';
 
@@ -25,13 +25,7 @@ const CollectiveAgreement = props => {
         backgroundColor: textWhite,
       }}
     >
-      <Icon reverse name="ios-american-football" type="ionicon" color="#517fa4" />
-      {/* <Icons
-      name="file"
-      size={32}
-      color={backgroundRed}
-      style={{ marginRight: 10 }}
-    /> */}
+      <Icon name="file" type="material-community" size={32} color={backgroundRed} iconStyle={{ marginRight: 10 }} />
       <Text
         style={{ color: 'black' }}
         onPress={() =>
