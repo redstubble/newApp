@@ -46,18 +46,23 @@ const TabNav = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === 'Home') {
-          iconName = `home${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Profile') {
-          iconName = `account${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Documents') {
-          iconName = `file${focused ? '' : '-outline'}`;
-        }
+        const getIconName = (route, f) => {
+          const lookup = {
+            Home: 'home',
+            Profile: 'account',
+            Documents: 'file',
+          };
+          const iconName = lookup[route];
+          if (iconName) {
+            const suffix = f ? '' : '-outline';
+            return `${iconName}${suffix}`;
+          }
+        };
+        const iconName = getIconName(routeName, focused);
 
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
-        return <Icon name="sc-telegram" type="evilicon" color="#517fa4" />;
+        return <Icon name={iconName} type="material-community" color="#517fa4" />;
         // return <Icons name={iconName} size={25} color={tintColor} />;
       },
     }),
