@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 import PropTypes from 'prop-types';
 import { createBottomTabNavigator, createDrawerNavigator, DrawerActions } from 'react-navigation';
-import { Icons } from 'react-native-vector-icons';
+import { Icon } from 'react-native-elements';
 import { backgroundRed } from '../utils/colors';
 import { signOut } from '../utils/psaApi';
 import Home from './Home';
@@ -43,8 +43,8 @@ const TabNav = createBottomTabNavigator(
   },
   {
     initialRouteName: 'Home',
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Home') {
@@ -57,7 +57,8 @@ const TabNav = createBottomTabNavigator(
 
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
-        return <Icons name={iconName} size={25} color={tintColor} />;
+        return <Icon name="sc-telegram" type="evilicon" color="#517fa4" />;
+        // return <Icons name={iconName} size={25} color={tintColor} />;
       },
     }),
     tabBarOptions: {
