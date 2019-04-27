@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Pdf from 'react-native-pdf';
-import { Platform, StyleSheet, Dimensions } from 'react-native';
+import { View, Platform, StyleSheet, Dimensions } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { CustomContainer } from '../components/CustomSnippets';
 
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'flex-start',
-    marginTop: 25,
+    overflow: 'hidden',
   },
   pdf: {
     flex: 1,
@@ -30,19 +30,21 @@ export default function Agreement({ navigation }) {
         style={{ marginTop: 20 }}
       />
     ) : (
-      <Pdf
-        source={source}
-        onLoadComplete={(numberOfPages, filePath) => {
-          console.log(`number of pages: ${numberOfPages}`);
-        }}
-        onPageChanged={(page, numberOfPages) => {
-          console.log(`current page: ${page}`);
-        }}
-        onError={error => {
-          console.log(error);
-        }}
-        style={styles.pdf}
-      />
+      <View style={styles.container}>
+        <Pdf
+          source={source}
+          onLoadComplete={(numberOfPages, filePath) => {
+            console.log(`number of pages: ${numberOfPages}`);
+          }}
+          onPageChanged={(page, numberOfPages) => {
+            console.log(`current page: ${page}`);
+          }}
+          onError={error => {
+            console.log(error);
+          }}
+          style={styles.pdf}
+        />
+      </View>
     );
   return (
     <CustomContainer title={name} navigationAction={() => navigation.goBack()} icon="arrow-back">

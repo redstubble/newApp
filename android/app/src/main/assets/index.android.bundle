@@ -87967,7 +87967,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             fileName: _jsxFileName,
             lineNumber: 24
           }
-        }, "Welcome to React Native!"), _react.default.createElement(_reactNative.Text, {
+        }, "WelcomeReact Native!"), _react.default.createElement(_reactNative.Text, {
           style: styles.instructions,
           __source: {
             fileName: _jsxFileName,
