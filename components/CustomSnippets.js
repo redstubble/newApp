@@ -13,7 +13,7 @@ export const CustomContainer = ({ title, navigationAction, hideHeader, children,
   </CustomSafeAreaView>
 );
 
-export const CustomSpinner = ({ visible } = this.props) => (
+export const CustomSpinner = ({ visible }) => (
   <View
     style={{
       position: 'absolute',
@@ -53,7 +53,7 @@ export const CustomWiFiConnectionError = () => (
   </View>
 );
 
-export const CustomUserMessage = ({ msg } = this.props) => (
+export const CustomUserMessage = ({ msg }) => (
   <View
     style={{
       flex: 1,

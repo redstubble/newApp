@@ -15,4 +15,7 @@ module.exports = {
   backgroundRed: '#A60003',
   backgroundWhite: '#ecf0f1',
   textWhite: '#fff',
+  pink: '#FEC2C2',
+  black: 'black',
+  textShadow: 'rgba(0, 0, 0, 1)',
 };

@@ -62,7 +62,7 @@ const TabNav = createBottomTabNavigator(
 
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
-        return <Icon name={iconName} type="material-community" color="#517fa4" />;
+        return <Icon name={iconName} type="material-community" color={tintColor} />;
         // return <Icons name={iconName} size={25} color={tintColor} />;
       },
     }),

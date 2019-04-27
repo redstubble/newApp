@@ -5,7 +5,6 @@ import { textWhite } from '../utils/colors';
 export const CustomSafeAreaView = styled.SafeAreaView`
   flex: 1;
   background-color: #000;
-  padding-top: ${Platform.OS === 'android' ? 25 : 0};
 `;
 
 export const HeaderText = styled.Text`
