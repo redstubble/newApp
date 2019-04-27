@@ -82,7 +82,7 @@ export function LandscapeView({ background, backgroundCard, barcodeValue, barcod
   return (
     <React.Fragment>
       <View style={{ height, width }}>
-        <StatusBar />
+        <StatusBar hidden />
         <ImageBackground
           source={background}
           style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}
