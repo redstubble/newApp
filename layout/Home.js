@@ -74,7 +74,6 @@ class Home extends React.Component {
   populateMemberData = async () => {
     const member = await getMemberDataAsync();
     const barcode = await getMemberBarcodeAsync();
-    debugger;
     if (!member.valid) console.error('Member Data Invalid Error');
     else console.log(barcode);
     this.setState({
@@ -86,12 +85,13 @@ class Home extends React.Component {
   };
 
   memberView = m => {
+    const { barcode: barcodeImg, portraitOrientation } = this.state;
     const barcodeValue = m.barcode_no;
-    const barcodeImg = this.state.barcode;
+    // const barcodeImg = this.state.barcode;
     const logo = Images.PSALogo;
     const memberNo = m.member_no;
     const memberValue = `${m.first_name.toUpperCase()} ${m.surname.toUpperCase()}`;
-    if (this.state.portraitOrientation) {
+    if (portraitOrientation) {
       console.log(this.state);
 
       return (
@@ -121,8 +121,7 @@ class Home extends React.Component {
   );
 
   render({ navigation } = this.props) {
-    const m = this.state.member;
-    debugger;
+    const { member, portraitOrientation, memberRequestCompleted, isReady } = this.state;
     // if (!this.state.isReady) {
     //   return (
     //     <CustomContainer title="Home" navigationAction={() => navigation.dispatch(DrawerActions.openDrawer())}>
@@ -140,9 +139,9 @@ class Home extends React.Component {
       <CustomContainer
         title="Home"
         navigationAction={() => navigation.dispatch(DrawerActions.openDrawer())}
-        hideHeader={!this.state.portraitOrientation}
+        hideHeader={!portraitOrientation}
       >
-        {this.state.memberRequestCompleted && this.state.isReady ? this.memberView(m) : <HomeLoader />}
+        {memberRequestCompleted && isReady ? this.memberView(member) : <HomeLoader />}
       </CustomContainer>
     );
   }

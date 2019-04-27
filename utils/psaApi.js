@@ -61,7 +61,6 @@ export class LoginAPI {
         }
         await setMemberAsync(member.export());
         // download barcode
-        debugger;
         const barCodeImg = await this.downloadBlob(JSONObj.data.BarcodeSource);
         if (barCodeImg) member.creds.barcode_img = barCodeImg;
 
@@ -99,6 +98,7 @@ export class LoginAPI {
   };
 
   downloadCollectiveAgreements = async agreementEntries => {
+    debugger;
     const total = agreementEntries.length;
     // const agreements = await Promise.all(
     const funcArray = agreementEntries.map((entry, i) => {
@@ -146,18 +146,12 @@ export class LoginAPI {
   downloadBlob = async link => {
     const data = await fetch(link, this.options);
     console.log(data);
-    debugger;
     const mime = data.headers.get('Content-Type');
     let result = false;
     if (mime.includes('png') && link.includes('barcode')) {
-      debugger;
-
       const b = await data.blob();
-      console.log('WELP');
-      debugger;
       try {
         result = await this.readBlob(b);
-        debugger;
         setMemberBarcodeAsync(result);
       } catch (rej) {
         console.log(rej);
@@ -167,11 +161,9 @@ export class LoginAPI {
   };
 
   readBlob = blob => {
-    debugger;
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = f => {
-        debugger;
         resolve(reader.result);
       };
 
@@ -195,7 +187,7 @@ export class LoginAPI {
       const t = fs.mkdir(DIR);
       debugger;
     }
-    const path = `${DIR}/${fileName}`;
+    const path = `${DIR}${fileName}`;
     debugger;
     try {
       const isDir = await fs.isDir(DIR);

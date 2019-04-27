@@ -23,14 +23,14 @@ import { updateDocumentState } from '../redux-actions';
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#000',
     flex: 0,
     height: '100%',
-    backgroundColor: '#000',
   },
   textLink: {
-    margin: 5,
     color: textWhite,
     fontSize: 15,
+    margin: 5,
     textDecorationLine: 'underline',
   },
 });
@@ -206,7 +206,6 @@ Login.propTypes = {
 };
 
 const mapStateToProps = state => {
-  debugger;
   return {
     documentsLoading: state.uploading,
     msg: state.msg,

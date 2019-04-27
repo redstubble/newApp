@@ -16,43 +16,43 @@ import DateTime from '../components/dateTime';
 import { UserProp, UserValue } from '../style/Text';
 
 const styles = StyleSheet.create({
-  droidSafeArea: {
-    flex: 1,
-    backgroundColor: 'black',
-    paddingTop: Platform.OS === 'android' ? 25 : 0,
-  },
-  userProp: {
-    fontSize: 14,
-    marginBottom: 5,
-    width: '100%',
-    color: '#FEC2C2',
-    fontWeight: '400',
-    fontStyle: 'normal',
-  },
-  userValue: {
-    fontSize: 18,
-    fontFamily: 'OCR A Std',
-    textShadowColor: 'rgba(0, 0, 0, 1)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 2,
-    overflow: 'hidden',
-    flexWrap: 'wrap',
-  },
   barcodeValue: {
-    fontSize: 18,
     fontFamily: 'OCR A Std',
+    fontSize: 18,
     width: '100%',
   },
   dateProp: {
-    fontSize: 14,
-    marginBottom: 5,
-    width: '100%',
     color: 'pink',
+    fontSize: 14,
     fontWeight: 'bold',
+    marginBottom: 5,
     textAlign: 'left',
+    width: '100%',
   },
   dateValue: {
     fontSize: 14,
+  },
+  droidSafeArea: {
+    backgroundColor: 'black',
+    flex: 1,
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
+  },
+  userProp: {
+    color: '#FEC2C2',
+    fontSize: 14,
+    fontStyle: 'normal',
+    fontWeight: '400',
+    marginBottom: 5,
+    width: '100%',
+  },
+  userValue: {
+    flexWrap: 'wrap',
+    fontFamily: 'OCR A Std',
+    fontSize: 18,
+    overflow: 'hidden',
+    textShadowColor: 'rgba(0, 0, 0, 1)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 2,
   },
 });
 
@@ -93,7 +93,6 @@ export class MemberDetail extends Component {
 export class LandscapeView extends PureComponent {
   render({ background, backgroundCard, barcodeValue, barcodeImg, logo, children } = this.props) {
     const { height, width } = Dimensions.get('window');
-    debugger;
     return (
       <React.Fragment>
         <View style={{ height, width, backgroundColor: 'blue' }}>
