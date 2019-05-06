@@ -6,7 +6,7 @@ import { CustomSafeAreaView } from '../style/Text';
 import Head from './headerSignedIn';
 import { backgroundRed } from '../utils/colors';
 
-export const CustomContainer = ({ title, navigationAction, hideHeader, children, icon } = this.props) => (
+export const CustomContainer = ({ title, navigationAction, hideHeader, children, icon }) => (
   <CustomSafeAreaView>
     {!hideHeader && <Head icon={icon || 'menu'} action={() => navigationAction()} title={title} />}
     <View style={{ flex: 1, backgroundColor: 'darkred' }}>{children}</View>

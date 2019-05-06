@@ -23,29 +23,23 @@ export default function Agreement({ navigation }) {
   console.log(uri);
   const source = { uri, cache: false };
 
-  const pdfViewer =
-    Platform.OS === 'ios' ? (
-      <WebView
-        source={{ uri }} // 'https://google.com'
-        style={{ marginTop: 20 }}
+  const pdfViewer = (
+    <View style={styles.container}>
+      <Pdf
+        source={source}
+        onLoadComplete={(numberOfPages, filePath) => {
+          console.log(`number of pages: ${numberOfPages}`);
+        }}
+        onPageChanged={(page, numberOfPages) => {
+          console.log(`current page: ${page}`);
+        }}
+        onError={error => {
+          console.log(error);
+        }}
+        style={styles.pdf}
       />
-    ) : (
-      <View style={styles.container}>
-        <Pdf
-          source={source}
-          onLoadComplete={(numberOfPages, filePath) => {
-            console.log(`number of pages: ${numberOfPages}`);
-          }}
-          onPageChanged={(page, numberOfPages) => {
-            console.log(`current page: ${page}`);
-          }}
-          onError={error => {
-            console.log(error);
-          }}
-          style={styles.pdf}
-        />
-      </View>
-    );
+    </View>
+  );
   return (
     <CustomContainer title={name} navigationAction={() => navigation.goBack()} icon="arrow-back">
       {pdfViewer}
