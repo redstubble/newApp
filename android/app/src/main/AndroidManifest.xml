@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.psarebuild1">
+  package="com.ionicframework.psapp180051">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

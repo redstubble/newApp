@@ -108,7 +108,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.psarebuild1"
+        applicationId "com.ionicframework.psapp180051"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

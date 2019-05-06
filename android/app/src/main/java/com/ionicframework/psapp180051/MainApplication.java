@@ -1,4 +1,4 @@
-package com.psarebuild1;
+package com.ionicframework.psapp180051;
 
 import android.app.Application;
 
