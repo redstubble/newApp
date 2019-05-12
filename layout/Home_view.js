@@ -17,7 +17,7 @@ import { UserProp, UserValue } from '../style/Text';
 
 const styles = StyleSheet.create({
   barcodeValue: {
-    fontFamily: 'OCR A Std',
+    fontFamily: 'OCRAStd',
     fontSize: 18,
     width: '100%',
   },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   userValue: {
     flexWrap: 'wrap',
-    fontFamily: 'OCR A Std',
+    fontFamily: 'OCRAStd',
     fontSize: 18,
     overflow: 'hidden',
     textShadowColor: textShadow,
@@ -159,6 +159,7 @@ export function LandscapeView({ background, backgroundCard, barcodeValue, barcod
                               fontSize: 18,
                               color: 'black',
                               width: '100%',
+                              font: '',
                             },
                           ]}
                         >
