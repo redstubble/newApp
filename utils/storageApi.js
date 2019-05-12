@@ -11,7 +11,6 @@ export const setMemberAsync = async JSONData => {
     return result;
   } catch (e) {
     console.log('AsyncTest');
-    debugger;
     console.log('AsyncSetMember', e.message);
     return false;
   }

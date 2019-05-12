@@ -98,7 +98,6 @@ export class LoginAPI {
   };
 
   downloadCollectiveAgreements = async agreementEntries => {
-    debugger;
     const total = agreementEntries.length;
     // const agreements = await Promise.all(
     const funcArray = agreementEntries.map((entry, i) => {
@@ -183,18 +182,13 @@ export class LoginAPI {
     if (httpResponse) fileName = this.getFileNameFromHttpResponse(httpResponse);
     const isDir = await fs.isDir(DIR);
     if (!isDir) {
-      debugger;
       const t = fs.mkdir(DIR);
-      debugger;
     }
     const path = `${DIR}${fileName}`;
-    debugger;
     try {
       const isDir = await fs.isDir(DIR);
-      debugger;
       if (!isDir) throw 'Exception';
     } catch (e) {
-      debugger;
       return new Error([`Unable to create local Directory ${DIR}`.psaApi]);
     }
 
@@ -202,7 +196,6 @@ export class LoginAPI {
       const res = await RNFetchBlob.config({
         path,
       }).fetch('GET', link);
-      debugger;
 
       if (res) {
         console.log(`${fileName} downloaded to ${path}`);

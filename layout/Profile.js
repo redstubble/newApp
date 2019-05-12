@@ -13,19 +13,25 @@ class Profile extends React.Component {
   };
 
   componentDidMount() {
-    this.handleConnectionChange = isConnected => {
-      this.setState({ isConnected: isConnected ? 1 : -1 });
-    };
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
-    NetInfo.isConnected.fetch().done(isConnected => {
-      this.handleConnectionChange(isConnected);
+    this.setState({
+      connectionListener: NetInfo.addEventListener('connectionChange', this.connectionLogic),
     });
+    // NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
+    NetInfo.getConnectionInfo().then(data => this.connectionLogic(data));
     this.populateMemberData();
   }
 
   componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectionChange);
+    const { connectionListener } = this.state;
+    if (connectionListener) {
+      connectionListener.remove();
+    }
   }
+
+  connectionLogic = data => {
+    debugger;
+    this.setState({ isConnected: data.type === 'none' || data.type === 'unknown' ? -1 : 1 });
+  };
 
   populateMemberData = async () => {
     const member = await getMemberDataAsync();

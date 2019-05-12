@@ -9,7 +9,15 @@ import { backgroundRed } from '../utils/colors';
 export const CustomContainer = ({ title, navigationAction, hideHeader, children, icon }) => (
   <CustomSafeAreaView>
     {!hideHeader && <Head icon={icon || 'menu'} action={() => navigationAction()} title={title} />}
-    <View style={{ flex: 1, backgroundColor: 'darkred' }}>{children}</View>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'darkred',
+        overflow: 'hidden', // ack to prevenßt webview white screen https://github.com/facebook/react-native/issues/21939
+      }}
+    >
+      {children}
+    </View>
   </CustomSafeAreaView>
 );
 
@@ -24,7 +32,6 @@ export const CustomSpinner = ({ visible }) => (
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      overflow: 'hidden', // ack to prevent webview white screen https://github.com/facebook/react-native/issues/21939
     }}
   >
     <ActivityIndicator animating={visible} color="#fff" size="large" hidesWhenStopped />
