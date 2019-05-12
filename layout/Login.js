@@ -13,7 +13,7 @@ import { Button } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CustomSafeAreaView } from '../style/Text';
-import { textWhite, backgroundRed, backgroundWhite } from '../utils/colors';
+import { textWhite, backgroundRed, psalightred } from '../utils/colors';
 import DateTime from '../components/dateTime';
 import Header from '../components/header';
 import CustomTextInput from '../components/customTextInput';
@@ -23,7 +23,7 @@ import { updateDocumentState } from '../redux-actions';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#000',
+    backgroundColor: psalightred,
     flex: 0,
     height: '100%',
   },

@@ -10,7 +10,6 @@ export class ProfileView extends Component {
 
   showSpinner = async () => {
     console.log('Show Spinner');
-    await new Promise(resolve => setTimeout(resolve, 8000));
     this.setState({ spinnerVisible: true, webViewOpacity: 1 });
   };
 
@@ -21,18 +20,14 @@ export class ProfileView extends Component {
   }
 
   render({ sourceURL, navigationAction } = this.props) {
+    const { webViewOpacity } = this.state;
     return (
-      <CustomContainer title="Profile" navigationAction={navigationAction}>
-        {this.state.spinnerVisible ? <CustomSpinner /> : null}
-        <WebView
-          style={{
-            opacity: this.state.webViewOpacity,
-          }}
-          source={{ uri: sourceURL }}
-          onLoadStart={() => this.showSpinner()}
-          onLoadEnd={() => this.hideSpinner()}
-        />
-      </CustomContainer>
+      <>
+        <CustomContainer title="Profile" navigationAction={navigationAction}>
+          {/* {this.state.spinnerVisible ? <CustomSpinner /> : null} */}
+          <WebView startInLoadingState renderLoading={() => <CustomSpinner visible />} source={{ uri: sourceURL }} />
+        </CustomContainer>
+      </>
     );
   }
 }

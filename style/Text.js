@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Platform } from 'react-native';
-import { textWhite } from '../utils/colors';
+import { textWhite, psalightred } from '../utils/colors';
 
 export const CustomSafeAreaView = styled.SafeAreaView`
   flex: 1;
-  background-color: #000;
+  background-color: ${psalightred};
 `;
 
 export const HeaderText = styled.Text`
