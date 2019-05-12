@@ -30,6 +30,7 @@ export const CustomSpinner = ({ visible }) => (
       left: 0,
       right: 0,
       flex: 1,
+      backgroundColor: backgroundRed,
       justifyContent: 'center',
       alignItems: 'center',
     }}
