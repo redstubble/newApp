@@ -35,13 +35,13 @@ export default class Agreement extends React.Component {
       link,
     });
 
-    const didBlurSubscription = navigation.addListener('didBlur', () => {
+    this.didBlurSubscription = navigation.addListener('didBlur', () => {
       this.setState({
         uri: null,
       });
     });
 
-    const willFocusSubscription = navigation.addListener('willFocus', () => {
+    this.willFocusSubscription = navigation.addListener('willFocus', () => {
       this.setState((prevState, props) => ({
         uri: prevState.link,
       }));
