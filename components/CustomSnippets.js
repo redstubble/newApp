@@ -24,6 +24,7 @@ export const CustomSpinner = ({ visible }) => (
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      overflow: 'hidden', // ack to prevent webview white screen https://github.com/facebook/react-native/issues/21939
     }}
   >
     <ActivityIndicator animating={visible} color="#fff" size="large" hidesWhenStopped />
