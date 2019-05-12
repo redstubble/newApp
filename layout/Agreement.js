@@ -17,32 +17,68 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Agreement({ navigation }) {
-  const uri = navigation.getParam('link');
-  const name = navigation.getParam('name');
-  console.log(uri);
-  const source = { uri, cache: false };
+export default class Agreement extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      uri: null,
+      link: null,
+    };
+    this.didBlurSubscription = null;
+    this.willFocusSubscription = null;
+  }
 
-  const pdfViewer = (
-    <View style={styles.container}>
-      <Pdf
-        source={source}
-        onLoadComplete={(numberOfPages, filePath) => {
-          console.log(`number of pages: ${numberOfPages}`);
-        }}
-        onPageChanged={(page, numberOfPages) => {
-          console.log(`current page: ${page}`);
-        }}
-        onError={error => {
-          console.log(error);
-        }}
-        style={styles.pdf}
-      />
-    </View>
-  );
-  return (
-    <CustomContainer title={name} navigationAction={() => navigation.goBack()} icon="arrow-back">
-      {pdfViewer}
-    </CustomContainer>
-  );
+  componentDidMount() {
+    const { navigation } = this.props;
+    const link = navigation.getParam('link');
+    this.setState({
+      link,
+    });
+
+    const didBlurSubscription = navigation.addListener('didBlur', () => {
+      this.setState({
+        uri: null,
+      });
+    });
+
+    const willFocusSubscription = navigation.addListener('willFocus', () => {
+      this.setState((prevState, props) => ({
+        uri: prevState.link,
+      }));
+    });
+  }
+
+  componentWillUnmount() {
+    this.didBlurSubscription.remove();
+    this.willFocusSubscription.remove();
+  }
+
+  render({ navigation } = this.props) {
+    const { uri } = this.state;
+    const name = navigation.getParam('name');
+    const source = { uri, cache: false };
+
+    const pdfViewer = (
+      <View style={styles.container}>
+        <Pdf
+          source={source}
+          onLoadComplete={(numberOfPages, filePath) => {
+            console.log(`number of pages: ${numberOfPages}`);
+          }}
+          onPageChanged={(page, numberOfPages) => {
+            console.log(`current page: ${page}`);
+          }}
+          onError={error => {
+            console.log(error);
+          }}
+          style={styles.pdf}
+        />
+      </View>
+    );
+    return (
+      <CustomContainer title={name} navigationAction={() => navigation.goBack()} icon="arrow-back">
+        {pdfViewer}
+      </CustomContainer>
+    );
+  }
 }
