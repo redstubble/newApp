@@ -13,24 +13,19 @@ class Profile extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({
-      connectionListener: NetInfo.addEventListener('connectionChange', this.connectionLogic),
+    NetInfo.isConnected.addEventListener('connectionChange', this.connectionLogic);
+    NetInfo.isConnected.fetch().done(isConnected => {
+      this.connectionLogic(isConnected);
     });
-    // NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
-    NetInfo.getConnectionInfo().then(data => this.connectionLogic(data));
     this.populateMemberData();
   }
 
   componentWillUnmount() {
-    const { connectionListener } = this.state;
-    if (connectionListener) {
-      connectionListener.remove();
-    }
+    NetInfo.isConnected.removeEventListener('connectionChange', this.connectionLogic);
   }
 
-  connectionLogic = data => {
-    debugger;
-    this.setState({ isConnected: data.type === 'none' || data.type === 'unknown' ? -1 : 1 });
+  connectionLogic = isConnected => {
+    this.setState({ isConnected: isConnected ? 1 : -1 });
   };
 
   populateMemberData = async () => {
@@ -47,10 +42,11 @@ class Profile extends React.Component {
   profileUrl = () => `${PROFILEPAGE}?api=1&u=${this.state.member.id}&p=${this.state.member.token}`;
 
   render({ navigation } = this.props) {
-    if (this.state.isConnected === 0 || !this.state.memberRequestCompleted) {
+    const { isConnected, memberRequestCompleted } = this.state;
+    if (isConnected === 0 || !memberRequestCompleted) {
       return <ProfileViewLoader navigationAction={this.nav(navigation)} />;
     }
-    if (this.state.isConnected === 1) {
+    if (isConnected === 1) {
       return <ProfileView sourceURL={this.profileUrl()} navigationAction={this.nav(navigation)} />;
     }
     return <NoInternetView />;
